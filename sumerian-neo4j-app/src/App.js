@@ -1,51 +1,95 @@
-import React from 'react';
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import React, {useState} from 'react';
 import './App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faEye, faEyeSlash, faEquals } from '@fortawesome/free-solid-svg-icons'
 
-import {useReadCypher, useWriteCypher} from 'use-neo4j'
-import {Menu} from 'semantic-ui-react';
-import Home from './views/Home';
-import Person from './views/Person';
-import { NeoGraph, ResponsiveNeoGraph } from './components/NeoGraph';
-
-// const Person = ({match}) => {
-//   return <div>Person {match.params.id} </div>
-// }
+import {ResponsiveNeoGraph, stabilize, showAll, clearAll, hideAll, updateGraph } from './components/NeoGraph';
+import { RangeSlider } from './components/RangeSlider';
+import { CSVData } from './components/CSVData';
+import {connect, sendMsg} from './api';
 
 const NEO4J_URI = "bolt://localhost:7687"
 const NEO4J_USER = "neo4j"
 const NEO4J_PASSWORD = "password"
 
-const App = () => {
+const INFO_PRE_ID = 'infoPreId'
+const INFO_ID = 'infoId'
 
+async function onSubmit (title) {
+  document.getElementById(INFO_ID).value = title
+  console.log("title", title)
+  const element = document.getElementById('submitBtn')
+  console.log("element", element)
+  element.classList.add('is-loading')
+}
+
+function handleKeyPress (event) {
+  if (event.key === 'ENTER') {
+    document.getElementById('submitBtn').click()
+  }
+}
+
+function resetValues() {
+  document.getElementById(INFO_ID).value = ''
+  document.getElementById(INFO_PRE_ID).innerHTML = ''
+}
+
+function onHideAll() {
+  resetValues()
+  hideAll()
+}
+
+function onClearAll() {
+  resetValues()
+  clearAll()
+}
+
+function send() {
+  console.log("hello");
+  sendMsg("hello");
+}
+
+
+const App = () => {
+  const [input, setInput] = useState('')
 
   return (
     <div className="App">
+      <pre className='bg'/>
+        <div className='padding'>
+          <input className='input is-link is-medium input-custom' id={INFO_ID} type='text' placeholder='Enter Name' onKeyPress={handleKeyPress}/>
+          <button className='button is-medium is-link submit-button' id='submitBtn' onClick={() => onSubmit(input)}> Submit</button>
+          <div className='button are-medium align-right'></div>
+            <button className='button is-rounded is-dark' onClick={stabilize}>
+              <span className='icon'> <i><FontAwesomeIcon icon={faEquals} ></FontAwesomeIcon></i></span>
+            </button>
+            <button className='button is-rounded is-dark' onClick={showAll}>
+              <span className='icon'><i><FontAwesomeIcon icon={faEye} /></i></span>
+            </button>
+            <button className='button is-rounded is-dark' onClick={onHideAll}>
+              <span className='icon'><i><FontAwesomeIcon icon={faEyeSlash} ></FontAwesomeIcon></i></span>
+            </button>
+            <button className='button is-rounded is-dark' onClick={onClearAll}>
+            <span className='icon'><i><FontAwesomeIcon icon={faTrash} ></FontAwesomeIcon></i></span>
+            </button>
+            <button className='button is-rounded is-blue' onClick={send}>
+            <span className='icon'><i><FontAwesomeIcon icon={faTrash} ></FontAwesomeIcon></i></span>
+            </button>
+            <CSVData></CSVData>
+          </div>
+        <pre className='bg'/>
+      <RangeSlider/>
       <ResponsiveNeoGraph
         containerId={"id0"}
         neo4jUri={NEO4J_URI}
         neo4jUser={NEO4J_USER}
         neo4jPassword={NEO4J_PASSWORD}
-      />
-      <NeoGraph
-        width={400}
-        height={300}
-        containerId={"id1"}
-        neo4jUri={NEO4J_URI}
-        neo4jUser={NEO4J_USER}
-        neo4jPassword={NEO4J_PASSWORD}
-        backgroundColor={"#b2beb5"}
-      />
-      {/* <Router>
-        <Menu>
-          <Menu.Item as={Link} to="/"> Sumerian Prospological</Menu.Item>
-        </Menu>
 
-        <Routes>
-          <Route exact path="/" element={<Home/>}/>
-          <Route exact path="/person/:id" element={<Person/>}/>
-        </Routes>
-      // </Router> */}
+        infoPreId={INFO_PRE_ID}
+        onSubmitFunction={onSubmit}
+      />
+      <pre className='padding info bg' id={INFO_PRE_ID}/>
+
     </div>
   );
 }

@@ -1,34 +1,46 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css";
+
+.submit-button {
+  width: 8%;
+  outline: 0;
+  border-radius: 15px;
+  margin: 0 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.input-custom {
+  width: 40%;
+  font-size: 26px; 
+  margin: auto; 
+  outline: 0;
+  border-radius: 15px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.padding {
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
-.App-link {
-  color: #61dafb;
+.info {
+  width: 70%; 
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  font-size: 26px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html {
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
+html,
+.bg {
+  background-color: #cdcaf8;
+}
+
+
+.align-right {
+  float: right;
 }
