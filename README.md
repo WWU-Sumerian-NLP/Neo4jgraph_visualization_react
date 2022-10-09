@@ -1,34 +1,14 @@
-# react-sumerian-neo4jgraph-app
+# Neo4jgraph_visualization_react
 
-This is a library to process Sumerian Tablets and perform NLP tasks
-
+Prototype of a graph visualization library for sumerian knowledge graph
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+We were actively developing our own UI to visualize knowledge graphs, but this is still in early development. </br>
 
-## Getting Started
-
-### Dependencies
-
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
-
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+![graph_ui](https://github.com/WWU-Sumerian-NLP/images/blob/master/graph_ui.png) </br>
 
 ## Authors
-
-Contributors names and contact info
-
 Hansel Guzman-Soto (https://www.linkedin.com/in/hansel-guzman-soto/)
 
+## Credits  
+We took major inspiration from https://github.com/ahmed91abbas/wiki-relations
