@@ -72,13 +72,12 @@ const App = () => {
             <button className='button is-rounded is-dark' onClick={onClearAll}>
             <span className='icon'><i><FontAwesomeIcon icon={faTrash} ></FontAwesomeIcon></i></span>
             </button>
-            <button className='button is-rounded is-blue' onClick={send}>
+            {/* <button className='button is-rounded is-blue' onClick={send}>
             <span className='icon'><i><FontAwesomeIcon icon={faTrash} ></FontAwesomeIcon></i></span>
-            </button>
-            <CSVData></CSVData>
+            </button> */}
           </div>
         <pre className='bg'/>
-      <RangeSlider/>
+      {/* <RangeSlider/> */}
       <ResponsiveNeoGraph
         containerId={"id0"}
         neo4jUri={NEO4J_URI}

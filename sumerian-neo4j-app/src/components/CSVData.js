@@ -37,4 +37,4 @@ const OldCSVData = (props) => {
     );
 }
 
-export {CSVData}
+export {OldCSVData}
